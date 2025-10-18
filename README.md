@@ -10,29 +10,11 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Cursus Progress
 
-<!-- PROGRESS START -->
-
-<div style="width:100%; max-width:500px; margin-bottom:1em; font-family:Arial, sans-serif;">
-  <div style="background:#ddd; border-radius:12px; overflow:hidden;">
-    <div style="
-        width:10.05%;
-        background: linear-gradient(90deg, #f39c12, #f1c40f, #2ecc71);
-        color:white;
-        text-align:center;
-        padding:10px 0;
-        font-weight:bold;
-        transition: width 1s ease-in-out;
-    ">
-      Level 2.11 / 21
-    </div>
-  </div>
-</div>
-
-<!-- PROGRESS END -->
+<a href="https://github.com/oakoudad/badge42"><img src="https://badge.mediaplus.ma/colorfulwaves/danjose-?1337Badge=off&UM6P=off" alt="danjose-'s 42 stats" /></a>
 
 ### Cursus Projects
 <!-- CURSUS START -->
-<h3>✅ Completed projects</h3>
+<h4>✅ Completed projects</h4>
 <div style='display:flex; flex-wrap:wrap; gap:10px;'>
 
 <div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
@@ -72,7 +54,7 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Piscine Projects
 <!-- PISCINE START -->
-<h3>✅ Completed projects</h3>
+<h4>✅ Completed projects</h4>
 <div style='display:flex; flex-wrap:wrap; gap:10px;'>
 
 <div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
