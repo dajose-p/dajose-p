@@ -180,24 +180,41 @@ def categorize_projects(projects):
 
 # --- HTML GENERATORS ---
 def generate_progress_bar(level):
-    percentage = min(level / 21 * 100, 100)
+    max_level = 21
+    percentage = min(level / max_level * 100, 100)
     return f"""
-<div style="background:#eee; border-radius:10px; overflow:hidden; width:100%; max-width:500px; margin-bottom:1em;">
-  <div style="background:#4CAF50; width:{percentage:.2f}%; color:white; text-align:center; padding:8px 0;">
-    Level {level:.2f} / 21
+<div style="width:100%; max-width:500px; margin-bottom:1em; font-family:Arial, sans-serif;">
+  <div style="background:#ddd; border-radius:12px; overflow:hidden;">
+    <div style="
+        width:{percentage:.2f}%;
+        background: linear-gradient(90deg, #f39c12, #f1c40f, #2ecc71);
+        color:white;
+        text-align:center;
+        padding:10px 0;
+        font-weight:bold;
+        transition: width 1s ease-in-out;
+    ">
+      Level {level:.2f} / {max_level}
+    </div>
   </div>
 </div>
 """
 
-
 def generate_project_list(projects):
     if not projects:
-        return "<p>No projects yet</p>"
-    html = "<ul>\n"
+        return "<p style='font-style:italic; color:#666;'>No projects yet</p>"
+
+    html = "<div style='display:flex; flex-wrap:wrap; gap:10px;'>\n"
     for p in sorted(projects, key=lambda x: x["name"].lower()):
-        symbol = "✅" if p["validated"] else "🟡"
-        html += f"<li><strong>{p['name']}</strong> — {symbol} ({p['mark']})</li>\n"
-    html += "</ul>"
+        color = "#2ecc71" if p["validated"] else "#f1c40f"  # verde o amarillo
+        symbol = "✅" if p["validated"] else "🚧"
+        html += f"""
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>{p['name']}</strong><br>
+  <span style='color:{color}; font-weight:bold;'>{symbol} {p['mark']}</span>
+</div>
+"""
+    html += "</div>"
     return html
 
 
