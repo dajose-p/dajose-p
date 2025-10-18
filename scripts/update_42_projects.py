@@ -16,7 +16,7 @@ REDIRECT_URI = "http://localhost:8080/callback"
 CURLUS_ID_COMMON_CORE = 21  # ID del Common Core
 TOKEN_FILE = "token.json"
 SCOPE = "public"
-
+README_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "README.md")
 HEADERS = {}
 
 # ---------------------------
@@ -142,7 +142,7 @@ def classify_projects(projects):
 
 def update_readme(progress, completed, in_progress):
     try:
-        with open("/home/danijosepereira/42/Github-readme/README.md", "r", encoding="utf-8") as f:
+        with open(README_PATH, "r", encoding="utf-8") as f:
             readme = f.read()
     except FileNotFoundError:
         readme = ""
@@ -173,7 +173,7 @@ def update_readme(progress, completed, in_progress):
         flags=re.DOTALL
     )
 
-    with open("README.md", "w", encoding="utf-8") as f:
+    with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(readme)
     print("✅ README.md updated successfully!")
 
