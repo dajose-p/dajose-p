@@ -2,7 +2,7 @@
 
 🎓 **Student at 42 Madrid**
 
-Welcome! Here you can see my progress in the **Common Core** cursus and my projects.
+<h3 align="center">💻 Student at <a href="https://www.42madrid.com/" target="_blank">42 Madrid</a> | Passionate about Systems, C Programming & Automation</h3>
 <!-- Badges -->
 <p align="center">
   <img src="https://img.shields.io/badge/C%20Language-00599C?style=for-the-badge&logo=c&logoColor=white" />
@@ -10,7 +10,6 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
   <img src="https://img.shields.io/badge/Shell_Scripting-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
   <img src="https://img.shields.io/badge/42%20Network-000000?style=for-the-badge&logo=42&logoColor=white" />
 </p>
----
 
 ### 🚀 About Me
 
