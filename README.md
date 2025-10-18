@@ -12,9 +12,19 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 <!-- PROGRESS START -->
 
-<div style="background:#eee; border-radius:12px; overflow:hidden; width:100%; max-width:500px; margin-bottom:1em;">
-  <div style="width:0%; background:#4CAF50; color:white; text-align:center; padding:8px 0; font-weight:bold;">
-    Level 0 / 0 (0%)
+<div style="width:100%; max-width:500px; margin-bottom:1em; font-family:Arial, sans-serif;">
+  <div style="background:#ddd; border-radius:12px; overflow:hidden;">
+    <div style="
+        width:10.05%;
+        background: linear-gradient(90deg, #f39c12, #f1c40f, #2ecc71);
+        color:white;
+        text-align:center;
+        padding:10px 0;
+        font-weight:bold;
+        transition: width 1s ease-in-out;
+    ">
+      Level 2.11 / 21
+    </div>
   </div>
 </div>
 
@@ -22,11 +32,123 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Cursus Projects
 <!-- CURSUS START -->
-<p style='font-style:italic; color:#666;'>No projects yet</p>
+<h4>✅ Completed</h4>
+<div style='display:flex; flex-wrap:wrap; gap:10px;'>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>Born2beroot</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 125</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>ft_printf</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>get_next_line</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>Libft</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 125</span>
+</div>
+</div>
+<h4>🚧 In Progress</h4>
+<div style='display:flex; flex-wrap:wrap; gap:10px;'>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>Exam Rank 02</strong><br>
+  <span style='color:#f1c40f; font-weight:bold;'>🚧 —</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>push_swap</strong><br>
+  <span style='color:#f1c40f; font-weight:bold;'>🚧 —</span>
+</div>
+</div>
 <!-- CURSUS END -->
 
 ### Piscine Projects
 <!-- PISCINE START -->
-<p style='font-style:italic; color:#666;'>No projects yet</p>
+<h4>✅ Completed</h4>
+<div style='display:flex; flex-wrap:wrap; gap:10px;'>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 00</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 85</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 01</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 02</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 55</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 04</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 85</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 05</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 80</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 06</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 07</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 60</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine C 08</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Exam 00</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Exam 01</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 100</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Exam 02</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 90</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Final Exam</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 78</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Rush 00</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 108</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Shell 00</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 70</span>
+</div>
+
+<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
+  <strong>C Piscine Shell 01</strong><br>
+  <span style='color:#2ecc71; font-weight:bold;'>✅ 55</span>
+</div>
+</div>
 <!-- PISCINE END -->
 
