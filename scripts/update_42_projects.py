@@ -156,42 +156,31 @@ def render_progress_bar(progress, done, total):
 
 
 def categorize_projects(projects):
-    cursus_projects = []
-    piscine_projects = []
+    cursus_projects = {"done": [], "in_progress": []}
+    piscine_projects = {"done": [], "in_progress": []}
 
     for p in projects:
-        name = p.get("project", {}).get("name", "")
+        name = p.get("project", {}).get("name", "Unknown Project")
         final_mark = p.get("final_mark")
+        validated = p.get("validated?")
         cursus_ids = p.get("cursus_ids", [])
         status = p.get("status", "")
-        validated = p.get("validated?", False)
+        mark = final_mark if final_mark is not None else "—"
 
-        # Normalizamos el valor de nota
-        final_mark = final_mark if isinstance(final_mark, (int, float)) else 0
+        project_data = {"name": name, "mark": mark, "validated": validated}
 
-        # Filtramos según el tipo de proyecto
         if COMMON_CORE_ID in cursus_ids:
-            # Ocultar suspensos o sin nota
-            if final_mark > 0:
-                cursus_projects.append({
-                    "name": name,
-                    "mark": final_mark,
-                    "validated": validated,
-                    "status": status,
-                })
-
+            if final_mark and final_mark > 0:
+                cursus_projects["done"].append(project_data)
+            else:
+                cursus_projects["in_progress"].append(project_data)
         elif PISCINE_ID in cursus_ids:
-            # Ocultar proyectos suspensos o con nota <= 50
-            if final_mark > 50:
-                piscine_projects.append({
-                    "name": name,
-                    "mark": final_mark,
-                    "validated": validated,
-                    "status": status,
-                })
+            if final_mark and final_mark > 50:
+                piscine_projects["done"].append(project_data)
+            else:
+                piscine_projects["in_progress"].append(project_data)
 
     return cursus_projects, piscine_projects
-
 
 def generate_project_list(projects):
     if not projects:
@@ -212,18 +201,28 @@ def generate_project_list(projects):
 
 # --------------------- UPDATE README ----------------------
 def update_readme(cursus_projects, piscine_projects, progress_html):
-    with open(README_PATH, "r", encoding="utf-8") as f:
+    readme_path = README_PATH
+
+    with open(readme_path, "r", encoding="utf-8") as f:
         readme = f.read()
 
+    # Progreso visual
     readme = replace_section(readme, "PROGRESS", progress_html)
-    readme = replace_section(readme, "CURSUS", generate_project_list(cursus_projects))
-    readme = replace_section(readme, "PISCINE", generate_project_list(piscine_projects))
 
-    with open(README_PATH, "w", encoding="utf-8") as f:
+    # Sección Cursus
+    cursus_html = "<h4>✅ Completed</h4>\n" + generate_project_list(cursus_projects["done"])
+    cursus_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(cursus_projects["in_progress"])
+    readme = replace_section(readme, "CURSUS", cursus_html)
+
+    # Sección Piscine
+    piscine_html = "<h4>✅ Completed</h4>\n" + generate_project_list(piscine_projects["done"])
+    piscine_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(piscine_projects["in_progress"])
+    readme = replace_section(readme, "PISCINE", piscine_html)
+
+    with open(readme_path, "w", encoding="utf-8") as f:
         f.write(readme)
 
-    print("✅ README actualizado correctamente.")
-
+    print("✅ README updated successfully!")
 
 def replace_section(content, marker, new_html):
     start = f"<!-- {marker} START -->"

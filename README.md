@@ -16,16 +16,23 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Cursus Projects
 <!-- CURSUS START -->
+<h4>✅ Completed</h4>
 <ul>
 <li><strong>Born2beroot</strong> — ✅ (125)</li>
 <li><strong>ft_printf</strong> — ✅ (100)</li>
 <li><strong>get_next_line</strong> — ✅ (100)</li>
 <li><strong>Libft</strong> — ✅ (125)</li>
 </ul>
+<h4>🚧 In Progress</h4>
+<ul>
+<li><strong>Exam Rank 02</strong> — 🟡 (—)</li>
+<li><strong>push_swap</strong> — 🟡 (—)</li>
+</ul>
 <!-- CURSUS END -->
 
 ### Piscine Projects
 <!-- PISCINE START -->
+<h4>✅ Completed</h4>
 <ul>
 <li><strong>C Piscine C 00</strong> — ✅ (85)</li>
 <li><strong>C Piscine C 01</strong> — ✅ (100)</li>
@@ -42,6 +49,14 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 <li><strong>C Piscine Rush 00</strong> — ✅ (108)</li>
 <li><strong>C Piscine Shell 00</strong> — ✅ (70)</li>
 <li><strong>C Piscine Shell 01</strong> — ✅ (55)</li>
+</ul>
+<h4>🚧 In Progress</h4>
+<ul>
+<li><strong>C Piscine BSQ</strong> — 🟡 (0)</li>
+<li><strong>C Piscine C 03</strong> — ✅ (50)</li>
+<li><strong>C Piscine C 09</strong> — 🟡 (30)</li>
+<li><strong>C Piscine Rush 01</strong> — 🟡 (0)</li>
+<li><strong>C Piscine Rush 02</strong> — 🟡 (0)</li>
 </ul>
 <!-- PISCINE END -->
 
