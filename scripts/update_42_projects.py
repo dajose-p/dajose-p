@@ -142,7 +142,7 @@ def classify_projects(projects):
 
 def update_readme(progress, completed, in_progress):
     try:
-        with open("README.md", "r", encoding="utf-8") as f:
+        with open("/home/danijosepereira/42/Github-readme/README.md", "r", encoding="utf-8") as f:
             readme = f.read()
     except FileNotFoundError:
         readme = ""

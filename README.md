@@ -1,41 +1,30 @@
-<!-- Header -->
-<h1 align="center">👋 Hi there! I'm Daniel José Pereira</h1>
-<h3 align="center">💻 Student at <a href="https://www.42madrid.com/" target="_blank">42 Madrid</a> | Passionate about Systems, C Programming & Automation</h3>
+# 👋 Hello, I'm Daniel Jose Pereira
 
-<!-- Badges -->
-<p align="center">
-  <img src="https://img.shields.io/badge/C%20Language-00599C?style=for-the-badge&logo=c&logoColor=white" />
-  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
-  <img src="https://img.shields.io/badge/Shell_Scripting-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
-  <img src="https://img.shields.io/badge/42%20Network-000000?style=for-the-badge&logo=42&logoColor=white" />
-</p>
+🎓 **Student at 42 Madrid**
+
+Welcome! Here you can see my progress in the **Common Core** cursus and my projects.
 
 ---
 
-### 🚀 About Me
+## 🚀 Common Core Progress
 
-- 🎓 I’m currently a **student at [42 Madrid](https://www.42madrid.com/)**, part of the **42 global network**.  
-- 🧠 Constantly learning about **low-level programming, system architecture, and network automation**.  
-- ⚙️ I love building tools that make workflows faster and more efficient.  
-- 🏗️ Working on projects that combine **C, Bash, and web APIs**.  
+### Cursus Progress
+
+<!-- PROGRESS START -->
+<div style="background-color:#eee; border-radius:5px; overflow:hidden; width:100%; max-width:500px;">
+  <div style="background-color:#4CAF50; width:0%; color:white; text-align:center; padding:5px 0;">0%</div>
+</div>
+<!-- PROGRESS END -->
 
 ---
 
-### 📂 My 42 Projects (via the 42 API)
-
-Below you can see a dynamic view of my **completed** and **in-progress** projects fetched from the **42 API**.
-
-> ⚡ This section updates automatically to reflect my real-time progress at 42 Madrid.
-### ✅ Completed Projects
+## ✅ Completed Projects
 <!-- COMPLETED START -->
-- **get_next_line** — ✅ (100)
-- **Born2beroot** — ✅ (125)
-- **ft_printf** — ✅ (100)
-- **Libft** — ✅ (125)
+_No completed projects yet._
 <!-- COMPLETED END -->
 
-### 🚧 In Progress
+## 🚧 In Progress
 <!-- INPROGRESS START -->
-- **push_swap** — 🚧 (in_progress)
-- **Exam Rank 02** — 🚧 (in_progress)
+_No ongoing projects._
 <!-- INPROGRESS END -->
+
