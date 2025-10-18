@@ -1,4 +1,4 @@
-# 👋 Hello, I'm Dani
+![Header](./github-header-banner.png)
 
 🎓 **Student at 42 Madrid**
 
