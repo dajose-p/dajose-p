@@ -162,7 +162,7 @@ def categorize_projects(projects):
 
         # Piscine (solo completados y nota >50)
         elif PISCINE_ID in cursus_ids:
-            if final_mark is not None and final_mark > 50:
+            if final_mark is not None and final_mark >= 50:
                 piscine_projects["done"].append(project_data)
 
     return cursus_projects, piscine_projects

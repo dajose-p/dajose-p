@@ -32,7 +32,7 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Cursus Projects
 <!-- CURSUS START -->
-<h4>✅ Completed</h4>
+<h3>✅ Completed projects</h3>
 <div style='display:flex; flex-wrap:wrap; gap:10px;'>
 
 <div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
@@ -72,7 +72,7 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 ### Piscine Projects
 <!-- PISCINE START -->
-<h4>✅ Completed</h4>
+<h3>✅ Completed projects</h3>
 <div style='display:flex; flex-wrap:wrap; gap:10px;'>
 
 <div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
