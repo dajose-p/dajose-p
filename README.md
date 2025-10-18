@@ -1,4 +1,4 @@
-# 👋 Hello, I'm Daniel Jose Pereira
+# 👋 Hello, I'm Dani
 
 🎓 **Student at 42 Madrid**
 
@@ -12,45 +12,43 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 
 <!-- PROGRESS START -->
 
-<div style="background-color:#eee; border-radius:5px; overflow:hidden; width:100%; max-width:500px;">
-  <div style="background-color:#4CAF50; width:21%; color:white; text-align:center; padding:5px 0;">21%</div>
+<div style="background:#eee; border-radius:10px; overflow:hidden; width:100%; max-width:500px; margin-bottom:1em;">
+  <div style="background:#4CAF50; width:66%; color:white; text-align:center; padding:8px 0;">
+    66% - 4/6 Common Core projects completed
+  </div>
 </div>
 
 <!-- PROGRESS END -->
 
----
+### Cursus Projects
+<!-- CURSUS START -->
+<ul>
+<li><strong>get_next_line</strong> — ✅ (100)</li>
+<li><strong>Born2beroot</strong> — ✅ (125)</li>
+<li><strong>ft_printf</strong> — ✅ (100)</li>
+<li><strong>Libft</strong> — ✅ (125)</li>
+<li><strong>C Piscine C 02</strong> — ✅ (55)</li>
+<li><strong>C Piscine C 03</strong> — ✅ (50)</li>
+<li><strong>C Piscine C 07</strong> — ✅ (60)</li>
+<li><strong>C Piscine C 09</strong> — ✅ (30)</li>
+<li><strong>C Piscine Final Exam</strong> — ✅ (78)</li>
+<li><strong>C Piscine C 08</strong> — ✅ (100)</li>
+<li><strong>C Piscine Exam 02</strong> — ✅ (90)</li>
+<li><strong>C Piscine C 06</strong> — ✅ (100)</li>
+<li><strong>C Piscine C 05</strong> — ✅ (80)</li>
+<li><strong>C Piscine C 04</strong> — ✅ (85)</li>
+<li><strong>C Piscine Rush 00</strong> — ✅ (108)</li>
+<li><strong>C Piscine Exam 01</strong> — ✅ (100)</li>
+<li><strong>C Piscine C 01</strong> — ✅ (100)</li>
+<li><strong>C Piscine C 00</strong> — ✅ (85)</li>
+<li><strong>C Piscine Exam 00</strong> — ✅ (100)</li>
+<li><strong>C Piscine Shell 01</strong> — ✅ (55)</li>
+<li><strong>C Piscine Shell 00</strong> — ✅ (70)</li>
+</ul>
+<!-- CURSUS END -->
 
-## ✅ Completed Projects
-<!-- COMPLETED START -->
-- **get_next_line** — ✅ (100)
-- **Born2beroot** — ✅ (125)
-- **ft_printf** — ✅ (100)
-- **Libft** — ✅ (125)
-- **C Piscine C 02** — ✅ (55)
-- **C Piscine C 03** — ✅ (50)
-- **C Piscine C 07** — ✅ (60)
-- **C Piscine C 09** — ✅ (30)
-- **C Piscine Rush 02** — ✅ (0)
-- **C Piscine Final Exam** — ✅ (78)
-- **C Piscine BSQ** — ✅ (0)
-- **C Piscine C 08** — ✅ (100)
-- **C Piscine Rush 01** — ✅ (0)
-- **C Piscine Exam 02** — ✅ (90)
-- **C Piscine C 06** — ✅ (100)
-- **C Piscine C 05** — ✅ (80)
-- **C Piscine C 04** — ✅ (85)
-- **C Piscine Rush 00** — ✅ (108)
-- **C Piscine Exam 01** — ✅ (100)
-- **C Piscine C 01** — ✅ (100)
-- **C Piscine C 00** — ✅ (85)
-- **C Piscine Exam 00** — ✅ (100)
-- **C Piscine Shell 01** — ✅ (55)
-- **C Piscine Shell 00** — ✅ (70)
-<!-- COMPLETED END -->
-
-## 🚧 In Progress
-<!-- INPROGRESS START -->
-- **push_swap** — 🚧 (in_progress)
-- **Exam Rank 02** — 🚧 (in_progress)
-<!-- INPROGRESS END -->
+### Piscine Projects
+<!-- PISCINE START -->
+<p>No projects yet</p>
+<!-- PISCINE END -->
 

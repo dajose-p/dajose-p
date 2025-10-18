@@ -16,7 +16,10 @@ REDIRECT_URI = "http://localhost:8080/callback"
 CURLUS_ID_COMMON_CORE = 21  # ID del Common Core
 TOKEN_FILE = "token.json"
 SCOPE = "public"
+
+# Ruta absoluta al README del repo (un nivel arriba de scripts/)
 README_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "README.md")
+
 HEADERS = {}
 
 # ---------------------------
@@ -63,7 +66,7 @@ def get_authorization_code():
             else:
                 self.send_response(400)
                 self.end_headers()
-                self.wfile.write(b"No code found.")
+                self.wfile.write("No code found.".encode("utf-8"))
     
     httpd = HTTPServer(("localhost", 8080), OAuthHandler)
     webbrowser.open(
@@ -100,18 +103,14 @@ def get_access_token():
 # ---------------------------
 # 42 API Functions
 # ---------------------------
-def get_cursus_progress():
-    resp = requests.get("https://api.intra.42.fr/v2/me", headers=HEADERS)
-    resp.raise_for_status()
-    data = resp.json()
-    
-    for cursus in data.get("cursus_users", []):
-        if cursus["cursus"]["id"] == CURLUS_ID_COMMON_CORE:
-            level = cursus.get("level", 0)
-            # Convertimos level a porcentaje aproximado
-            progress = min(int(level * 10), 100)
-            return progress
-    return 0
+def get_cursus_progress(projects):
+    total = sum(1 for pu in projects if CURLUS_ID_COMMON_CORE in pu.get("cursus_ids", []))
+    done = sum(1 for pu in projects
+               if CURLUS_ID_COMMON_CORE in pu.get("cursus_ids", [])
+               and pu.get("final_mark") is not None
+               and pu.get("final_mark") > 0)
+    progress = int(done / total * 100) if total > 0 else 0
+    return progress, done, total
 
 def get_projects():
     resp = requests.get("https://api.intra.42.fr/v2/me", headers=HEADERS)
@@ -120,38 +119,57 @@ def get_projects():
     return data.get("projects_users", [])
 
 def classify_projects(projects):
-    completed, in_progress = [], []
-    common_core_done = 0
+    cursus_done = []
+    piscine_done = []
+
     for pu in projects:
         try:
             project_name = pu["project"]["name"]
             status = pu.get("status", "unknown")
             mark = pu.get("final_mark")
             cursus_ids = pu.get("cursus_ids", [])
+            is_piscine = pu["project"]["slug"].startswith("piscine")
 
-            if CURLUS_ID_COMMON_CORE in cursus_ids and status == "finished":
-                common_core_done += 1
+            # Filtrado según nota
+            if is_piscine and (mark is None or mark <= 50):
+                continue
+            if not is_piscine and (mark is None or mark == 0):
+                continue
 
-            if status == "finished":
-                completed.append(f"- **{project_name}** — ✅ ({mark if mark is not None else 'No mark yet'})")
-            elif status in ["in_progress", "waiting_for_correction"]:
-                in_progress.append(f"- **{project_name}** — 🚧 ({status})")
+            entry = f"<li><strong>{project_name}</strong> — {'✅' if status=='finished' else '🚧'} ({mark})</li>"
+
+            if is_piscine:
+                piscine_done.append(entry)
+            else:
+                cursus_done.append(entry)
+
         except Exception:
             continue
-    return completed, in_progress, common_core_done
 
-def update_readme(progress, completed, in_progress):
+    return cursus_done, piscine_done
+
+# ---------------------------
+# README Update
+# ---------------------------
+def update_readme(progress, done, total, cursus, piscine):
     try:
         with open(README_PATH, "r", encoding="utf-8") as f:
             readme = f.read()
     except FileNotFoundError:
         readme = ""
 
+    # Barra de progreso con número de proyectos
     progress_bar = f"""
-<div style="background-color:#eee; border-radius:5px; overflow:hidden; width:100%; max-width:500px;">
-  <div style="background-color:#4CAF50; width:{progress}%; color:white; text-align:center; padding:5px 0;">{progress}%</div>
+<div style="background:#eee; border-radius:10px; overflow:hidden; width:100%; max-width:500px; margin-bottom:1em;">
+  <div style="background:#4CAF50; width:{progress}%; color:white; text-align:center; padding:8px 0;">
+    {progress}% - {done}/{total} Common Core projects completed
+  </div>
 </div>
 """
+
+    cursus_html = "<ul>\n" + "\n".join(cursus) + "\n</ul>" if cursus else "<p>No projects yet</p>"
+    piscine_html = "<ul>\n" + "\n".join(piscine) + "\n</ul>" if piscine else "<p>No projects yet</p>"
+
     readme = re.sub(
         r"(<!-- PROGRESS START -->)(.*?)(<!-- PROGRESS END -->)",
         f"\\1\n{progress_bar}\n\\3",
@@ -160,21 +178,22 @@ def update_readme(progress, completed, in_progress):
     )
 
     readme = re.sub(
-        r"(<!-- COMPLETED START -->)(.*?)(<!-- COMPLETED END -->)",
-        f"\\1\n" + "\n".join(completed) + f"\n\\3",
+        r"(<!-- CURSUS START -->)(.*?)(<!-- CURSUS END -->)",
+        f"\\1\n{cursus_html}\n\\3",
         readme,
         flags=re.DOTALL
     )
 
     readme = re.sub(
-        r"(<!-- INPROGRESS START -->)(.*?)(<!-- INPROGRESS END -->)",
-        f"\\1\n" + "\n".join(in_progress) + f"\n\\3",
+        r"(<!-- PISCINE START -->)(.*?)(<!-- PISCINE END -->)",
+        f"\\1\n{piscine_html}\n\\3",
         readme,
         flags=re.DOTALL
     )
 
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(readme)
+
     print("✅ README.md updated successfully!")
 
 # ---------------------------
@@ -184,10 +203,10 @@ if __name__ == "__main__":
     token = get_access_token()
     HEADERS["Authorization"] = f"Bearer {token}"
 
-    progress = get_cursus_progress()
     projects = get_projects()
-    completed, in_progress, common_core_done = classify_projects(projects)
+    progress, done, total = get_cursus_progress(projects)
+    cursus_projects, piscine_projects = classify_projects(projects)
 
-    print(f"Common Core projects completed: {common_core_done}")
-    update_readme(progress, completed, in_progress)
+    print(f"Common Core projects completed: {done}/{total}")
+    update_readme(progress, done, total, cursus_projects, piscine_projects)
 
