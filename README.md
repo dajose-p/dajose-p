@@ -11,7 +11,13 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 ### Cursus Progress
 
 <!-- PROGRESS START -->
-<div style='background:#eee;border-radius:10px;overflow:hidden;width:100%;max-width:500px;margin-bottom:1em;'><div style='background:#4CAF50;width:66%;color:white;text-align:center;padding:8px 0;'>66% - 4/6 Common Core projects completed</div></div>
+
+<div style="background:#eee; border-radius:10px; overflow:hidden; width:100%; max-width:500px; margin-bottom:1em;">
+  <div style="background:#4CAF50; width:10.05%; color:white; text-align:center; padding:8px 0;">
+    Level 2.11 / 21
+  </div>
+</div>
+
 <!-- PROGRESS END -->
 
 ### Cursus Projects
