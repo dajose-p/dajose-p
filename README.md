@@ -1,7 +1,5 @@
 ![Header](./github-header-banner.png)
 
-🎓 **Student at 42 Madrid**
-
 <h3 align="center">💻 Student at <a href="https://www.42madrid.com/" target="_blank">42 Madrid</a> | Passionate about Systems, C Programming & Automation</h3>
 <!-- Badges -->
 <p align="center">
