@@ -157,28 +157,28 @@ def render_progress_bar(progress, done, total):
 
 def categorize_projects(projects):
     cursus_projects = {"done": [], "in_progress": []}
-    piscine_projects = {"done": [], "in_progress": []}
+    piscine_projects = {"done": []}
 
     for p in projects:
         name = p.get("project", {}).get("name", "Unknown Project")
         final_mark = p.get("final_mark")
         validated = p.get("validated?")
         cursus_ids = p.get("cursus_ids", [])
-        status = p.get("status", "")
         mark = final_mark if final_mark is not None else "—"
 
         project_data = {"name": name, "mark": mark, "validated": validated}
 
+        # Common Core
         if COMMON_CORE_ID in cursus_ids:
             if final_mark and final_mark > 0:
                 cursus_projects["done"].append(project_data)
             else:
                 cursus_projects["in_progress"].append(project_data)
+
+        # Piscine (solo completados y con nota > 50)
         elif PISCINE_ID in cursus_ids:
             if final_mark and final_mark > 50:
                 piscine_projects["done"].append(project_data)
-            else:
-                piscine_projects["in_progress"].append(project_data)
 
     return cursus_projects, piscine_projects
 
@@ -206,13 +206,18 @@ def update_readme(cursus_projects, piscine_projects, progress_html):
     with open(readme_path, "r", encoding="utf-8") as f:
         readme = f.read()
 
-    # Progreso visual
+    # Barra de progreso
     readme = replace_section(readme, "PROGRESS", progress_html)
 
-    # Sección Cursus
+    # --- Cursus ---
     cursus_html = "<h4>✅ Completed</h4>\n" + generate_project_list(cursus_projects["done"])
-    cursus_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(cursus_projects["in_progress"])
+    if cursus_projects["in_progress"]:
+        cursus_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(cursus_projects["in_progress"])
     readme = replace_section(readme, "CURSUS", cursus_html)
+
+    # --- Piscine (solo completados) ---
+    piscine_html = "<h4>✅ Completed</h4>\n" + generate_project_list(piscine_projects["done"])
+    readme = replace_section(readme, "PISCINE", piscine_html)
 
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(readme)

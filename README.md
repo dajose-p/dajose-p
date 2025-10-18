@@ -50,13 +50,5 @@ Welcome! Here you can see my progress in the **Common Core** cursus and my proje
 <li><strong>C Piscine Shell 00</strong> — ✅ (70)</li>
 <li><strong>C Piscine Shell 01</strong> — ✅ (55)</li>
 </ul>
-<h4>🚧 In Progress</h4>
-<ul>
-<li><strong>C Piscine BSQ</strong> — 🟡 (0)</li>
-<li><strong>C Piscine C 03</strong> — ✅ (50)</li>
-<li><strong>C Piscine C 09</strong> — 🟡 (30)</li>
-<li><strong>C Piscine Rush 01</strong> — 🟡 (0)</li>
-<li><strong>C Piscine Rush 02</strong> — 🟡 (0)</li>
-</ul>
 <!-- PISCINE END -->
 
