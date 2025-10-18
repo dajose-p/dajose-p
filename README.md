@@ -28,10 +28,14 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 > ⚡ This section updates automatically to reflect my real-time progress at 42 Madrid.
 ### ✅ Completed Projects
 <!-- COMPLETED START -->
-_Loading from 42 API..._
+- **get_next_line** — ✅ (100)
+- **Born2beroot** — ✅ (125)
+- **ft_printf** — ✅ (100)
+- **Libft** — ✅ (125)
 <!-- COMPLETED END -->
 
 ### 🚧 In Progress
 <!-- INPROGRESS START -->
-_Loading from 42 API..._
+- **push_swap** — 🚧 (in_progress)
+- **Exam Rank 02** — 🚧 (in_progress)
 <!-- INPROGRESS END -->
