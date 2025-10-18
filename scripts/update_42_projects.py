@@ -214,11 +214,6 @@ def update_readme(cursus_projects, piscine_projects, progress_html):
     cursus_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(cursus_projects["in_progress"])
     readme = replace_section(readme, "CURSUS", cursus_html)
 
-    # Sección Piscine
-    piscine_html = "<h4>✅ Completed</h4>\n" + generate_project_list(piscine_projects["done"])
-    piscine_html += "\n<h4>🚧 In Progress</h4>\n" + generate_project_list(piscine_projects["in_progress"])
-    readme = replace_section(readme, "PISCINE", piscine_html)
-
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(readme)
 
