@@ -160,7 +160,7 @@ def categorize_projects(projects):
             else:
                 cursus_projects["in_progress"].append(project_data)
 
-        # Piscine (solo completados y nota >50)
+        # Piscine (solo completados y nota >=50)
         elif PISCINE_ID in cursus_ids:
             if final_mark is not None and final_mark >= 50:
                 piscine_projects["done"].append(project_data)
@@ -168,41 +168,14 @@ def categorize_projects(projects):
     return cursus_projects, piscine_projects
 
 # --- HTML GENERATORS ---
-def generate_progress_bar(level):
-    max_level = 21
-    percentage = min(level / max_level * 100, 100)
-    return f"""
-<div style="width:100%; max-width:500px; margin-bottom:1em; font-family:Arial, sans-serif;">
-  <div style="background:#ddd; border-radius:12px; overflow:hidden;">
-    <div style="
-        width:{percentage:.2f}%;
-        background: linear-gradient(90deg, #f39c12, #f1c40f, #2ecc71);
-        color:white;
-        text-align:center;
-        padding:10px 0;
-        font-weight:bold;
-        transition: width 1s ease-in-out;
-    ">
-      Level {level:.2f} / {max_level}
-    </div>
-  </div>
-</div>
-"""
-
 def generate_project_list(projects):
     if not projects:
         return "<p style='font-style:italic; color:#666;'>No projects yet</p>"
 
-    html = "<div style='display:flex; flex-wrap:wrap; gap:10px;'>\n"
+    html = "<div style='display:flex; flex-direction:column; gap:6px;'>\n"
     for p in sorted(projects, key=lambda x: x["name"].lower()):
-        color = "#2ecc71" if p["validated"] else "#f1c40f"
         symbol = "✅" if p["validated"] else "🚧"
-        html += f"""
-<div style='flex:1 1 200px; background:#f9f9f9; border-radius:10px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);'>
-  <strong>{p['name']}</strong><br>
-  <span style='color:{color}; font-weight:bold;'>{symbol} {p['mark']}</span>
-</div>
-"""
+        html += f"{p['name']}   {symbol} {p['mark']}<br>\n"
     html += "</div>"
     return html
 
@@ -215,11 +188,9 @@ def replace_section(content, marker, new_html):
         return content
     return content[: start + len(start_marker)] + "\n" + new_html + "\n" + content[end:]
 
-def update_readme(cursus_projects, piscine_projects, progress_html):
+def update_readme(cursus_projects, piscine_projects):
     with open(README_PATH, "r", encoding="utf-8") as f:
         readme = f.read()
-
-    readme = replace_section(readme, "PROGRESS", progress_html)
 
     cursus_html = "<h4>✅ Completed</h4>\n" + generate_project_list(cursus_projects["done"])
     if cursus_projects["in_progress"]:
@@ -237,12 +208,7 @@ def update_readme(cursus_projects, piscine_projects, progress_html):
 # --- MAIN ---
 if __name__ == "__main__":
     print("🔍 Fetching 42 profile and projects...")
-    me = get_me()
-    level = next((c["level"] for c in me.get("cursus_users", []) if c["cursus_id"] == COMMON_CORE_ID), 0)
-
     projects = get_projects()
     cursus_projects, piscine_projects = categorize_projects(projects)
-
-    progress_html = generate_progress_bar(level)
-    update_readme(cursus_projects, piscine_projects, progress_html)
+    update_readme(cursus_projects, piscine_projects)
 
