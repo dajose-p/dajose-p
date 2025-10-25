@@ -34,13 +34,13 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 <h4>✅ Completed</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
 Born2beroot   ✅ 125<br>
+Exam Rank 02   ✅ 100<br>
 ft_printf   ✅ 100<br>
 get_next_line   ✅ 100<br>
 Libft   ✅ 125<br>
 </div>
 <h4>🚧 In Progress</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-Exam Rank 02   🚧 —<br>
 push_swap   🚧 —<br>
 </div>
 <!-- CURSUS END -->
