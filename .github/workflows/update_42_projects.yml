@@ -38,7 +38,7 @@ jobs:
           FT_CLIENT_SECRET: ${{ secrets.FT_CLIENT_SECRET }}
           FT_42_LOGIN: ${{ secrets.FT_42_LOGIN }}
         # 🚨 IMPORTANTE: Usa el nombre de archivo correcto
-        run: python update_42_projects.py 
+        run: python ./scripts/update_42_projects.py 
 
       - name: 💾 Commit y Push del README (Ignorando token.json)
         run: |
