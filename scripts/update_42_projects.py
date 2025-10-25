@@ -143,12 +143,11 @@ def generate_project_list(projects):
     return html
 
 def replace_section(content, marker, new_html):
-    start_marker = f""
-    end_marker = f""
+    start_marker = f"<!-- {marker} START -->"
+    end_marker = f"<!-- {marker} END -->"
     start = content.find(start_marker)
     end = content.find(end_marker)
     if start == -1 or end == -1:
-        print(f"⚠️ Warning: Markers '{start_marker}' or '{end_marker}' not found in README.")
         return content
     return content[: start + len(start_marker)] + "\n" + new_html + "\n" + content[end:]
 
