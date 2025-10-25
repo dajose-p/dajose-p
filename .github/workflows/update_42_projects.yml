@@ -13,12 +13,17 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+# 🚨 ESTE ES EL CAMBIO CLAVE: Permisos de escritura para el GITHUB_TOKEN
+    permissions:
+      contents: write # Esto permite al bot escribir y hacer push en el repositorio
+
     steps:
       - name: ⬇️ Checkout del repositorio
         uses: actions/checkout@v4
         with:
-          # Esencial para el paso 'git push'
           fetch-depth: 0 
+          # 🚨 MEJORA: Usa el GITHUB_TOKEN para la autenticación en el checkout
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🐍 Configurar Python
         uses: actions/setup-python@v5
