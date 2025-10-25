@@ -38,7 +38,7 @@ jobs:
           FT_CLIENT_ID: ${{ secrets.FT_CLIENT_ID }}
           FT_CLIENT_SECRET: ${{ secrets.FT_CLIENT_SECRET }}
         # 🚨 IMPORTANTE: Reemplaza 'update_readme.py' por el nombre real de tu script.
-        run: python update_readme.py 
+        run: python ./scripts/update_42_projects.py
 
       - name: 💾 Commit y Push de los cambios del README (Ignorando token.json)
         run: |
