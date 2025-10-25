@@ -1,10 +1,9 @@
+# .github/workflows/update_42_projects.yml
 name: 🗓️ Actualización Diaria del Perfil 42
 
 on:
   # Ejecución programada: '0 3 * * *' se ejecuta a las 03:00 UTC todos los días.
-  # Ajusta la hora cron para tu zona horaria. Por ejemplo:
-  # - Para 1 AM CEST (UTC+2), usa '59 22 * * *' (10:59 PM UTC del día anterior).
-  # - Para 3 AM CEST (UTC+2), usa '59 0 * * *' (12:59 AM UTC).
+  # Puedes ajustar la hora si lo deseas (Ej: 0 22 * * * para las 10 PM UTC)
   schedule:
     - cron: '0 3 * * *'
 
@@ -16,45 +15,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout del repositorio
-        # Descarga el código. fetch-depth: 0 es crucial para el paso de 'git push'.
         uses: actions/checkout@v4
         with:
+          # Esencial para el paso 'git push'
           fetch-depth: 0 
 
       - name: 🐍 Configurar Python
         uses: actions/setup-python@v5
         with:
-          # Usar una versión específica de Python
-          python-version: '3.11' 
+          python-version: '3.11' # Versión recomendada
 
-      - name: 📦 Instalar dependencias
-        # Se asume que solo necesitas 'requests'. Si necesitas más, añade 'pip install -r requirements.txt'
+      - name: 📦 Instalar dependencias (requests)
         run: |
-          pip install requests
+          python -m pip install --upgrade pip
+          # Asume que 'requirements.txt' contiene 'requests'
+          pip install -r requirements.txt 
 
-      - name: ⚙️ Ejecutar script de actualización (Creará/Actualizará token.json y README.md)
+      - name: ⚙️ Ejecutar script de actualización
         env:
-          # Estas variables se cargan desde los Secretos de GitHub.
+          # Carga los secretos y el login de 42
           FT_CLIENT_ID: ${{ secrets.FT_CLIENT_ID }}
           FT_CLIENT_SECRET: ${{ secrets.FT_CLIENT_SECRET }}
-        # 🚨 IMPORTANTE: Reemplaza 'update_readme.py' por el nombre real de tu script.
-        run: python ./scripts/update_42_projects.py
+          FT_42_LOGIN: ${{ secrets.FT_42_LOGIN }}
+        # 🚨 IMPORTANTE: Usa el nombre de archivo correcto
+        run: python update_42_projects.py 
 
-      - name: 💾 Commit y Push de los cambios del README (Ignorando token.json)
+      - name: 💾 Commit y Push del README (Ignorando token.json)
         run: |
-          # 1. Configurar la identidad del bot de GitHub Actions
+          # 1. Configurar la identidad
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
           
-          # 2. Añadir EXPLICITAMENTE solo el README.md a la zona de staging.
-          # Esto evita que el token.json (que debería estar en .gitignore) sea añadido.
+          # 2. Añadir EXPLICITAMENTE solo el README.md
           git add README.md
           
-          # 3. Verificar si realmente hay cambios en el README.md
+          # 3. Comprobar si hay cambios y hacer commit/push solo si es necesario
           if git diff --cached --quiet; then
-            echo "El README.md no ha cambiado. No se requiere commit."
+            echo "El README.md no ha cambiado. Terminando sin commit."
           else
-            # 4. Hacer commit y push solo si hay cambios.
             git commit -m "🤖 Actualización automática del progreso de 42."
             git push
           fi
