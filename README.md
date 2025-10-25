@@ -31,15 +31,15 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 <!-- CURSUS START -->
 <h4>✅ Completed</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-Born2beroot   ✅ 125<br>
-Exam Rank 02   ✅ 100<br>
-ft_printf   ✅ 100<br>
-get_next_line   ✅ 100<br>
-Libft   ✅ 125<br>
+- Born2beroot ✅ (125)<br>
+- Exam Rank 02 ✅ (100)<br>
+- ft_printf ✅ (100)<br>
+- get_next_line ✅ (100)<br>
+- Libft ✅ (125)<br>
 </div>
 <h4>🚧 In Progress</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-push_swap   🚧 —<br>
+- push_swap 🚧 <br>
 </div>
 <!-- CURSUS END -->
 
@@ -47,22 +47,22 @@ push_swap   🚧 —<br>
 <!-- PISCINE START -->
 <h4>✅ Completed</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-C Piscine C 00   ✅ 85<br>
-C Piscine C 01   ✅ 100<br>
-C Piscine C 02   ✅ 55<br>
-C Piscine C 03   ✅ 50<br>
-C Piscine C 04   ✅ 85<br>
-C Piscine C 05   ✅ 80<br>
-C Piscine C 06   ✅ 100<br>
-C Piscine C 07   ✅ 60<br>
-C Piscine C 08   ✅ 100<br>
-C Piscine Exam 00   ✅ 100<br>
-C Piscine Exam 01   ✅ 100<br>
-C Piscine Exam 02   ✅ 90<br>
-C Piscine Final Exam   ✅ 78<br>
-C Piscine Rush 00   ✅ 108<br>
-C Piscine Shell 00   ✅ 70<br>
-C Piscine Shell 01   ✅ 55<br>
+- C Piscine C 00 ✅ (85)<br>
+- C Piscine C 01 ✅ (100)<br>
+- C Piscine C 02 ✅ (55)<br>
+- C Piscine C 03 ✅ (50)<br>
+- C Piscine C 04 ✅ (85)<br>
+- C Piscine C 05 ✅ (80)<br>
+- C Piscine C 06 ✅ (100)<br>
+- C Piscine C 07 ✅ (60)<br>
+- C Piscine C 08 ✅ (100)<br>
+- C Piscine Exam 00 ✅ (100)<br>
+- C Piscine Exam 01 ✅ (100)<br>
+- C Piscine Exam 02 ✅ (90)<br>
+- C Piscine Final Exam ✅ (78)<br>
+- C Piscine Rush 00 ✅ (108)<br>
+- C Piscine Shell 00 ✅ (70)<br>
+- C Piscine Shell 01 ✅ (55)<br>
 </div>
 <!-- PISCINE END -->
 
