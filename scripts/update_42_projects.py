@@ -1,22 +1,19 @@
 import os
 import json
 import requests
-# Se eliminó 'webbrowser' y las librerías del servidor HTTP
-# from http.server import HTTPServer, BaseHTTPRequestHandler 
 
 # --- CONFIG ---
-# Ajusta la ruta de BASE_DIR si es necesario.
-# BASE_DIR apunta a la carpeta inmediatamente superior a donde se ejecuta el script.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR apunta a la raíz del repo (si el script se ejecuta desde la raíz o desde .github/workflows)
+# Ajustamos para que funcione bien en GitHub Actions
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TOKEN_FILE = os.path.join(BASE_DIR, "token.json")
 README_PATH = os.path.join(BASE_DIR, "README.md")
 
-# Las variables de entorno FT_CLIENT_ID y FT_CLIENT_SECRET son leídas por el OS
+# Lee las variables de entorno configuradas en GitHub Actions
 CLIENT_ID = os.getenv("FT_CLIENT_ID")
 CLIENT_SECRET = os.getenv("FT_CLIENT_SECRET")
-# REDIRECT_URI ya no es necesario
+FT_42_LOGIN = os.getenv("FT_42_LOGIN")
 
-AUTH_URL = "https://api.intra.42.fr/oauth/authorize"
 TOKEN_URL = "https://api.intra.42.fr/oauth/token"
 API_BASE = "https://api.intra.42.fr/v2"
 
@@ -25,37 +22,17 @@ PISCINE_ID = 9
 
 # --- TOKEN MANAGEMENT ---
 def save_token(token_data):
-    # Asegura que el archivo token.json se guarde un nivel arriba si el script se ejecuta en una subcarpeta.
+    """Guarda el token de acceso en un archivo local (excluido por .gitignore)."""
     os.makedirs(os.path.dirname(TOKEN_FILE), exist_ok=True)
     with open(TOKEN_FILE, "w") as f:
         json.dump(token_data, f)
 
 def load_token():
+    """Carga el token guardado."""
     if os.path.exists(TOKEN_FILE):
         with open(TOKEN_FILE, "r") as f:
             return json.load(f)
     return None
-
-# La función refresh_token no es estrictamente necesaria en Client Credentials,
-# pero se mantiene por si el token fuese de otro tipo o la API lo soportase.
-def refresh_token(refresh_token):
-    print("♻️ Refrescando access token...")
-    resp = requests.post(
-        TOKEN_URL,
-        data={
-            "grant_type": "refresh_token",
-            "client_id": CLIENT_ID,
-            "client_secret": CLIENT_SECRET,
-            "refresh_token": refresh_token,
-        },
-    )
-    if resp.ok:
-        token_data = resp.json()
-        save_token(token_data)
-        return token_data
-    else:
-        print("❌ Refresh failed:", resp.text)
-        return None
 
 # --- CLIENT CREDENTIALS FLOW (Flujo automatizado) ---
 def get_client_credentials_token():
@@ -67,48 +44,47 @@ def get_client_credentials_token():
             "grant_type": "client_credentials",
             "client_id": CLIENT_ID,
             "client_secret": CLIENT_SECRET,
-            "scope": "public" # Scope requerido para acceso general
+            "scope": "public" 
         },
     )
-    resp.raise_for_status()
+    resp.raise_for_status() # Lanza error si no es 2xx (ej: 401 si las credenciales son malas)
     token_data = resp.json()
     save_token(token_data)
     return token_data
 
 def get_access_token():
+    """Carga o genera un token de acceso válido."""
     token_data = load_token()
     access_token = token_data.get("access_token") if token_data else None
 
-    # 1. Si no hay token guardado, obtiene uno nuevo (Client Credentials Flow)
+    # 1. Si no hay token guardado, obtiene uno nuevo
     if not token_data or not access_token:
         print("🪙 No se encontró token. Iniciando Client Credentials Flow...")
         token_data = get_client_credentials_token()
         return token_data.get("access_token")
 
-    # 2. Si hay token, comprueba si es válido probando un endpoint simple
-    test = requests.get(f"{API_BASE}/me", headers={"Authorization": f"Bearer {access_token}"})
+    # 2. Comprueba si el token existente es válido (usando un endpoint simple y público: /cursus)
+    # Ya no usamos /me porque falla con Client Credentials.
+    test = requests.get(f"{API_BASE}/cursus", headers={"Authorization": f"Bearer {access_token}"})
     
-    # 3. Si el token expiró (código 401), obtenemos uno nuevo (Client Credentials)
+    # 3. Si el token expiró (código 401), obtenemos uno nuevo
     if test.status_code == 401:
         print("❌ Token expirado. Obteniendo un nuevo token (Client Credentials).")
-        # Para Client Credentials, si expira, simplemente obtenemos uno nuevo.
-        # Se IGNORA refresh_token de la data anterior.
         token_data = get_client_credentials_token()
         access_token = token_data.get("access_token")
 
     return access_token
 
-# --- API CALLS (El resto del código se mantiene igual) ---
-def get_me():
-    token = get_access_token()
-    resp = requests.get(f"{API_BASE}/me", headers={"Authorization": f"Bearer {token}"})
-    resp.raise_for_status()
-    return resp.json()
+# --- API CALLS ---
+# Se eliminó la función get_me()
 
 def get_projects():
+    """Obtiene todos los proyectos del usuario especificado por FT_42_LOGIN."""
+    if not FT_42_LOGIN:
+        raise Exception("FT_42_LOGIN no está configurado. No se puede buscar el perfil.")
+        
     token = get_access_token()
-    me = get_me()
-    login = me.get("login")
+    login = FT_42_LOGIN 
 
     projects = []
     page = 1
@@ -117,8 +93,7 @@ def get_projects():
             f"{API_BASE}/users/{login}/projects_users?page={page}&per_page=50",
             headers={"Authorization": f"Bearer {token}"},
         )
-        if resp.status_code != 200:
-            break
+        resp.raise_for_status() # Lanza una excepción por errores HTTP (ej: 404 si el login es incorrecto)
         data = resp.json()
         if not data:
             break
@@ -126,7 +101,7 @@ def get_projects():
         page += 1
     return projects
 
-# --- DATA PROCESSING ---
+# --- DATA PROCESSING (Se mantiene igual) ---
 def categorize_projects(projects):
     cursus_projects = {"done": [], "in_progress": []}
     piscine_projects = {"done": []}
@@ -154,14 +129,13 @@ def categorize_projects(projects):
 
     return cursus_projects, piscine_projects
 
-# --- HTML GENERATORS ---
+# --- HTML GENERATORS (Se mantiene igual) ---
 def generate_project_list(projects):
     if not projects:
         return "<p style='font-style:italic; color:#666;'>No projects yet</p>"
 
     html = "<div style='display:flex; flex-direction:column; gap:6px;'>\n"
     for p in sorted(projects, key=lambda x: x["name"].lower()):
-        # Se ajusta el formato para la salida Markdown/HTML dentro del README
         mark_display = f"({p['mark']})" if p['mark'] != '—' else ''
         symbol = "✅" if p["validated"] else "🚧"
         html += f"- {p['name']} {symbol} {mark_display}<br>\n"
@@ -174,7 +148,6 @@ def replace_section(content, marker, new_html):
     start = content.find(start_marker)
     end = content.find(end_marker)
     if start == -1 or end == -1:
-        # Imprime una advertencia si no encuentra los marcadores
         print(f"⚠️ Warning: Markers '{start_marker}' or '{end_marker}' not found in README.")
         return content
     return content[: start + len(start_marker)] + "\n" + new_html + "\n" + content[end:]
@@ -200,18 +173,18 @@ def update_readme(cursus_projects, piscine_projects):
 
 # --- MAIN ---
 if __name__ == "__main__":
-    if not CLIENT_ID or not CLIENT_SECRET:
-        print("❌ Error: FT_CLIENT_ID o FT_CLIENT_SECRET no están configurados como variables de entorno.")
+    if not CLIENT_ID or not CLIENT_SECRET or not FT_42_LOGIN:
+        print("❌ Error: CLIENT_ID, CLIENT_SECRET o FT_42_LOGIN no están configurados como variables de entorno.")
         exit(1)
         
-    print("🔍 Fetching 42 profile and projects...")
+    print(f"🔍 Fetching 42 projects for user: {FT_42_LOGIN}...")
     try:
         projects = get_projects()
         cursus_projects, piscine_projects = categorize_projects(projects)
         update_readme(cursus_projects, piscine_projects)
     except requests.exceptions.HTTPError as e:
         print(f"❌ Error HTTP al llamar a la API: {e}")
-        print("Asegúrate que tu CLIENT_ID y CLIENT_SECRET son correctos.")
+        print("Asegúrate que tus credenciales de API son correctas y que el login existe.")
         exit(1)
     except Exception as e:
         print(f"❌ Error inesperado: {e}")
