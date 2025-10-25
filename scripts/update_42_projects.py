@@ -7,7 +7,7 @@ import requests
 # Ajustamos para que funcione bien en GitHub Actions
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TOKEN_FILE = os.path.join(BASE_DIR, "token.json")
-README_PATH = os.path.join(BASE_DIR, "README.md")
+README_PATH = os.path.join(BASE_DIR, "../README.md")
 
 # Lee las variables de entorno configuradas en GitHub Actions
 CLIENT_ID = os.getenv("FT_CLIENT_ID")
