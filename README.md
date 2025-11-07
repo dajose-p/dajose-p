@@ -39,7 +39,8 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 </div>
 <h4>🚧 In Progress</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-- push_swap 🚧 <br>
+- push_swap 🚧 (0)<br>
+- so_long 🚧 <br>
 </div>
 <!-- CURSUS END -->
 
