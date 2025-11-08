@@ -34,7 +34,7 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 - Born2beroot ✅ (125)<br>
 - Exam Rank 02 ✅ (100)<br>
 - ft_printf ✅ (100)<br>
-- get_next_line ✅ (100)<br>
+- get_next_line ✅ (125)<br>
 - Libft ✅ (125)<br>
 </div>
 <h4>🚧 In Progress</h4>
