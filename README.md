@@ -36,10 +36,10 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 - ft_printf ✅ (100)<br>
 - get_next_line ✅ (125)<br>
 - Libft ✅ (125)<br>
+- push_swap ✅ (100)<br>
 </div>
 <h4>🚧 In Progress</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-- push_swap 🚧 (0)<br>
 - so_long 🚧 <br>
 </div>
 <!-- CURSUS END -->
