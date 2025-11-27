@@ -37,10 +37,11 @@ Below you can see a dynamic view of my **completed** and **in-progress** project
 - get_next_line ✅ (125)<br>
 - Libft ✅ (125)<br>
 - push_swap ✅ (100)<br>
+- so_long ✅ (100)<br>
 </div>
 <h4>🚧 In Progress</h4>
 <div style='display:flex; flex-direction:column; gap:6px;'>
-- so_long 🚧 <br>
+- minitalk 🚧 <br>
 </div>
 <!-- CURSUS END -->
 
